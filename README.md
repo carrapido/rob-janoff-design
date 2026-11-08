@@ -13,19 +13,7 @@ An [Agent Skill](https://agentskills.io/specification) that makes an AI agent de
 Paste this prompt into your agent (Claude Code, Codex, Gemini CLI, GitHub Copilot, Cursor or any agent that supports [Agent Skills](https://agentskills.io)):
 
 ```text
-Install the agent skill "rob-janoff-design" from https://github.com/carrapido/rob-janoff-design
-
-1. Clone the repository into a temporary directory:
-   git clone --depth 1 https://github.com/carrapido/rob-janoff-design.git
-2. Copy its skills/rob-janoff-design/ folder into the personal skills directory of the agent you are:
-   - Claude Code: ~/.claude/skills/
-   - Codex: ~/.agents/skills/
-   - Gemini CLI: ~/.gemini/skills/
-   - GitHub Copilot: ~/.copilot/skills/
-   - Cursor: ~/.cursor/skills/
-   - Any other agent: the skills directory your own documentation defines.
-3. Check that <skills-directory>/rob-janoff-design/SKILL.md exists, then delete the temporary clone.
-4. Tell me the final path and whether I must restart you to load the skill.
+Install the rob-janoff-design skill from https://github.com/carrapido/rob-janoff-design, refer to the repo's AGENTS.md for instructions.
 ```
 
 <details>
@@ -61,6 +49,7 @@ Ask your agent for a logo, for example: *"Design the logo for a specialty coffee
 .
 ├── .claude-plugin/
 │   └── marketplace.json        # Claude Code plugin marketplace
+├── AGENTS.md                   # Install steps the agent follows
 └── skills/
     └── rob-janoff-design/
         ├── SKILL.md            # Workflow the agent follows
