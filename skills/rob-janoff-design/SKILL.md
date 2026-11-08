@@ -13,6 +13,7 @@ Antes de diseñar, lee el archivo correspondiente usando tus herramientas de lec
 - **Para seguir el proceso de abstracción física, siluetas y color (Capítulos 1 al 5):** Lee `references/01-proceso-apple.md`.
 - **Para inspirarte en patrones reales de logos, monogramas y espacio negativo (Capítulo 8 y Apéndices):** Lee `references/02-casos-estudio.md`.
 - **Para aplicar las reglas de oro, tipografía, balance y el test de preguntas (Capítulo 9 y Cuestionario):** Lee `references/03-reglas-y-tipografia.md`.
+- **Para construir cada curva con regla y compás (serie áurea), ajustar los trazos a mano del cliente y probar el logo en su contexto:** Lee `references/04-regla-y-compas.md`.
 
 ## Flujo de Ejecución Obligatorio
 
@@ -28,6 +29,7 @@ Antes de diseñar, lee el archivo correspondiente usando tus herramientas de lec
 
 ### Fase 3: Ejecución en SVG Puro y Presentación de 3 Opciones
 - **"When in doubt, leave it out":** Cero ilustraciones literales tipo grabado (evita el error del logo original de Ron Wayne para Apple). Usa únicamente siluetas sólidas (`fill`), sustracción geométrica y espacio negativo.
+- **Regla y compás:** Cada curva es un arco de una sola serie áurea, `R(n) = R0 / φⁿ`, y cada posición es una distancia de esa serie; ninguna medida va a ojo. Nombra en el código el paso de la serie de cada medida.
 - **Presenta siempre 3 opciones conceptuales:** Para que el cliente tenga propiedad de la elección sin abrumarse:
   - *Concepto A:* Silueta Esencial + Corte de Escala Humano.
   - *Concepto B:* Guiño en Espacio Negativo (estilo FedEx).
@@ -35,4 +37,10 @@ Antes de diseñar, lee el archivo correspondiente usando tus herramientas de lec
 - **Entregable visual:** Genera un archivo HTML/React de previsualización que muestre cada opción en:
   1. Versión a color atada al USP.
   2. Versión monocromática sólida (blanco/negro) probando que la silueta sobrevive por sí sola.
-  3. Prueba de escala ("Tiny Button to Billboard"): Renderizado a `256px`, `48px` y `16px`.
+  3. Prueba de escala ("Tiny Button to Billboard"): Renderizado a `256px`, `48px` y `16px`, con el de 16 px ampliado ×8 y el tamaño en píxeles de cada detalle (lo que mide menos de 1 px desaparece).
+  4. Prueba en contexto: el avatar recortado en círculo, la versión de un solo color sobre fondo oscuro y la marca de agua sobre una imagen.
+
+### Fase 4: Iteración con el Cliente (del trazo a mano al ajuste áureo)
+1. Entrega una copia editable en Béziers cúbicos para que el cliente ajuste a mano.
+2. Cuando avise, compara su versión contra la última copia y ajusta cada cambio con círculos de la serie, reportando el error del ajuste.
+3. Aplica el resultado en el componente áureo sin sobrescribir la hoja a mano, y si una forma representa algo, pregunta qué es antes de convertirla en otra cosa.
