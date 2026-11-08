@@ -7,7 +7,6 @@ An [Agent Skill](https://agentskills.io/specification) that makes an AI agent de
 3. Add "a wink and a smile".
 4. Deliver three SVG concepts, each tested in color, solid monochrome and at 256, 48 and 16 px.
 
-The skill content is written in Spanish.
 
 ## Install
 
