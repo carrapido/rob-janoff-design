@@ -6,26 +6,14 @@ An [Agent Skill](https://agentskills.io/specification) that makes an AI agent de
 2. Abstract the shape: silhouette, cross-section, scale relation.
 3. Add "a wink and a smile".
 4. Deliver three SVG concepts, each tested in color, solid monochrome and at 256, 48 and 16 px.
-
+5. Build every curve with ruler and compass from one golden series, and fit the client's hand-drawn edits back onto it.
 
 ## Install
 
 Paste this prompt into your agent (Claude Code, Codex, Gemini CLI, GitHub Copilot, Cursor or any agent that supports [Agent Skills](https://agentskills.io)):
 
 ```text
-Install the agent skill "rob-janoff-design" from https://github.com/carrapido/rob-janoff-design
-
-1. Clone the repository into a temporary directory:
-   git clone --depth 1 https://github.com/carrapido/rob-janoff-design.git
-2. Copy its skills/rob-janoff-design/ folder into the personal skills directory of the agent you are:
-   - Claude Code: ~/.claude/skills/
-   - Codex: ~/.agents/skills/
-   - Gemini CLI: ~/.gemini/skills/
-   - GitHub Copilot: ~/.copilot/skills/
-   - Cursor: ~/.cursor/skills/
-   - Any other agent: the skills directory your own documentation defines.
-3. Check that <skills-directory>/rob-janoff-design/SKILL.md exists, then delete the temporary clone.
-4. Tell me the final path and whether I must restart you to load the skill.
+Install the rob-janoff-design skill from https://github.com/carrapido/rob-janoff-design, refer to the repo's AGENTS.md for instructions.
 ```
 
 <details>
@@ -53,7 +41,7 @@ Copy `skills/rob-janoff-design/` into your agent's skills directory:
 
 ## Usage
 
-Ask your agent for a logo, for example: *"Diseña el logo de una cafetería de especialidad en Oaxaca"*. The skill triggers on requests to create a logo, design a brand icon, vectorize a concept in SVG or evaluate a visual identity.
+Ask your agent for a logo, for example: *"Design the logo for a specialty coffee shop in Oaxaca"*. The skill triggers on requests to create a logo, design a brand icon, vectorize a concept in SVG or evaluate a visual identity.
 
 ## Repository layout
 
@@ -61,13 +49,15 @@ Ask your agent for a logo, for example: *"Diseña el logo de una cafetería de e
 .
 ├── .claude-plugin/
 │   └── marketplace.json        # Claude Code plugin marketplace
+├── AGENTS.md                   # Install steps the agent follows
 └── skills/
     └── rob-janoff-design/
         ├── SKILL.md            # Workflow the agent follows
-        └── references/         # Book chapters, loaded on demand
-            ├── 01-proceso-apple.md
-            ├── 02-casos-estudio.md
-            └── 03-reglas-y-tipografia.md
+        └── references/         # Loaded on demand
+            ├── 01-apple-process.md
+            ├── 02-case-studies.md
+            ├── 03-rules-and-typography.md
+            └── 04-ruler-and-compass.md   # Golden-series construction, hand-edit fitting, tests
 ```
 
 ## Disclaimer
