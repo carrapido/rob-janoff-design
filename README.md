@@ -8,8 +8,6 @@ An [Agent Skill](https://agentskills.io/specification) that makes an AI agent de
 4. Deliver three SVG concepts, each tested in color, solid monochrome and at 256, 48 and 16 px.
 5. Build every curve with ruler and compass from one golden series, and fit the client's hand-drawn edits back onto it.
 
-The skill content is written in Spanish.
-
 ## Install
 
 Paste this prompt into your agent (Claude Code, Codex, Gemini CLI, GitHub Copilot, Cursor or any agent that supports [Agent Skills](https://agentskills.io)):
@@ -55,7 +53,7 @@ Copy `skills/rob-janoff-design/` into your agent's skills directory:
 
 ## Usage
 
-Ask your agent for a logo, for example: *"Diseña el logo de una cafetería de especialidad en Oaxaca"*. The skill triggers on requests to create a logo, design a brand icon, vectorize a concept in SVG or evaluate a visual identity.
+Ask your agent for a logo, for example: *"Design the logo for a specialty coffee shop in Oaxaca"*. The skill triggers on requests to create a logo, design a brand icon, vectorize a concept in SVG or evaluate a visual identity.
 
 ## Repository layout
 
@@ -67,10 +65,10 @@ Ask your agent for a logo, for example: *"Diseña el logo de una cafetería de e
     └── rob-janoff-design/
         ├── SKILL.md            # Workflow the agent follows
         └── references/         # Loaded on demand
-            ├── 01-proceso-apple.md
-            ├── 02-casos-estudio.md
-            ├── 03-reglas-y-tipografia.md
-            └── 04-regla-y-compas.md   # Golden-series construction, hand-edit fitting, tests
+            ├── 01-apple-process.md
+            ├── 02-case-studies.md
+            ├── 03-rules-and-typography.md
+            └── 04-ruler-and-compass.md   # Golden-series construction, hand-edit fitting, tests
 ```
 
 ## Disclaimer
