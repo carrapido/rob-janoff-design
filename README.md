@@ -1,5 +1,7 @@
 # rob-janoff-design
 
+[![Tests](https://github.com/carrapido/rob-janoff-design/actions/workflows/test.yml/badge.svg)](https://github.com/carrapido/rob-janoff-design/actions/workflows/test.yml)
+
 An [Agent Skill](https://agentskills.io/specification) that makes an AI agent design logos, icons and monograms with Rob Janoff's methodology from *Taking a Bite out of the Apple*:
 
 1. Do your homework: business, audience, USP.
@@ -180,6 +182,7 @@ Every run is a full agent session billed to your account; add `--runs 1` and `--
 ├── .claude-plugin/
 │   ├── marketplace.json        # Claude Code plugin marketplace
 │   └── plugin.json             # Plugin manifest
+├── .github/workflows/test.yml   # CI: npm test and the type check on Linux, macOS and Windows
 ├── AGENTS.md                   # Install steps the agent follows
 ├── evals/                      # One claude plugin eval case per mode: design, critique, refresh
 ├── tests/                      # Tests for the skill's scripts: npm test

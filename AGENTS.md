@@ -43,6 +43,7 @@ Delete `<skills-directory>/rob-janoff-design/`.
 | `tests/` | Tests for the scripts. |
 | `evals/` | `claude plugin eval` cases, one per mode (design, critique, refresh). |
 | `.claude-plugin/marketplace.json` | Claude Code plugin marketplace. |
+| `.github/workflows/test.yml` | CI: `npm test` and `npm run typecheck` on Linux, macOS and Windows for every push. |
 
 ## Verification
 
