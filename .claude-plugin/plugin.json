@@ -1,0 +1,12 @@
+{
+  "name": "rob-janoff-design",
+  "description": "Logo, icon and monogram design, critique and refresh following Rob Janoff's methodology from \"Taking a Bite out of the Apple\": three one-ink SVG concepts built from a golden series, measured and rendered before they are shown.",
+  "author": {
+    "name": "carrapido",
+    "url": "https://github.com/carrapido"
+  },
+  "homepage": "https://github.com/carrapido/rob-janoff-design",
+  "repository": "https://github.com/carrapido/rob-janoff-design",
+  "license": "MIT",
+  "keywords": ["logo", "branding", "identity", "svg", "design", "golden-ratio"]
+}
