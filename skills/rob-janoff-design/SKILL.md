@@ -29,20 +29,36 @@ Before designing, read the matching file with your file-reading tools:
 
 ### Phase 3: Pure SVG Execution and 3 Options
 - **"When in doubt, leave it out":** No literal, engraving-style illustrations (avoid the mistake of Ron Wayne's original Apple logo). Use only solid silhouettes (`fill`), geometric subtraction and negative space.
-- **Ruler and compass:** Every curve is an arc from a single golden series, `R(n) = R0 / φⁿ`, and every position is a distance from that series; no measurement is set by eye. In the code, name the series step of each measurement.
-- **Audit the series:** Before showing a concept, run `node <skill-dir>/scripts/series-audit.ts concept.svg --r0 <R0>` (Node 24 or later; in Claude Code, `<skill-dir>` is `${CLAUDE_SKILL_DIR}`). Fix every circle it lists as OFF SERIES or NOT CIRCULAR: `node <skill-dir>/scripts/series-fit.ts concept.svg --r0 <R0>` gives, for each one, the series arc through the same end points and the `A` command that draws it. An AMBIGUOUS curve is too flat to measure, so name its step in the code. If Node is not available, say so instead of claiming the check passed.
-- **Look before showing:** Run `node <skill-dir>/scripts/render-png.ts concept.svg --out <dir>` and open `<dir>/concept-sheet.png` with your image-reading tool: the 256 and 48 px renders at real size and the 16 px render enlarged ×8. Check that the silhouette reads at 16 px, every detail shows at 48 px, the wink is visible at 256 px and nothing is cut by the frame. Fix what you see and render again; show a concept only after you have looked at its sheet. The command draws fills only; when it lists something it did not draw (a stroke, a mask, a gradient), outline it as a fill or check it in a browser.
-- **Always present 3 conceptual options**, so the client owns the choice without being overwhelmed:
+- **Three concepts in one ink:** Build three conceptual options, so the client owns the choice without being overwhelmed. Draw each as a solid dark silhouette on a light ground: "a perfect silhouette never needs to be replaced", and the color tied to the USP comes after the pick.
   - *Concept A:* Essential Silhouette + Human-Scale Cut.
   - *Concept B:* Negative-Space Wink (FedEx style).
   - *Concept C:* Graphic Continuum / Monogram (Crooz or Langone style).
-- **Visual deliverable:** Generate an HTML/React preview file that shows each option as:
+- **Ruler and compass:** Every curve is an arc from a single golden series, `R(n) = R0 / φⁿ`, and every position is a distance from that series; no measurement is set by eye. In the code, name the series step of each measurement.
+- **Audit the series:** Before showing a concept, run `node <skill-dir>/scripts/series-audit.ts concept.svg --r0 <R0>` (Node 24 or later; in Claude Code, `<skill-dir>` is `${CLAUDE_SKILL_DIR}`). Fix every circle it lists as OFF SERIES or NOT CIRCULAR: `node <skill-dir>/scripts/series-fit.ts concept.svg --r0 <R0>` gives, for each one, the series arc through the same end points and the `A` command that draws it. An AMBIGUOUS curve is too flat to measure, so name its step in the code. If Node is not available, say so instead of claiming the check passed.
+- **Look before showing:** Run `node <skill-dir>/scripts/render-png.ts concept.svg --out <dir>` and open `<dir>/concept-sheet.png` with your image-reading tool: the 256 and 48 px renders at real size and the 16 px render enlarged ×8. Check that the silhouette reads at 16 px, every detail shows at 48 px, the wink is visible at 256 px and nothing is cut by the frame. Fix what you see and render again; show a concept only after you have looked at its sheet. The command draws fills only; when it lists something it did not draw (a stroke, a mask, a gradient), outline it as a fill or check it in a browser.
+- **Concept checkpoint: show the three, then stop.** Show the three sheets (attach the PNGs, or give their paths if you cannot share files) with this message, then wait for the client's answer:
+
+  ```markdown
+  ### A · <name>: essential silhouette + human-scale cut   ← recommended
+  **Idea:** <one sentence> · **Wink:** <what makes the viewer smile> · **Risk:** <one honest risk>
+
+  ### B · <name>: negative-space wink   (same shape)
+  ### C · <name>: graphic continuum / monogram   (same shape)
+
+  **My pick:** <one or two sentences on why>.
+  **Next:** choose one, or tell me what you like in each. Then I build its full preview: color tied to the USP, one-ink version, scale test and context test.
+  ```
+
+  Build nothing else until they choose: the preview is most of the work and only makes sense for the chosen concept. If they ask for changes, iterate on the concepts and show the sheets again. Skip the pause only when the client explicitly said not to check in; if they cannot reply at all, stop here anyway and describe what the preview would contain.
+
+### Phase 4: Full Preview of the Chosen Concept
+- **Visual deliverable:** Generate an HTML/React preview file that shows the chosen concept as:
   1. A color version tied to the USP.
   2. A solid monochrome version (black/white) proving the silhouette survives on its own.
   3. A scale test (a logo "has to work on a tiny button and a huge billboard"): rendered at `256px`, `48px` and `16px` from the PNGs `render-png.ts` wrote, with the 16 px PNG enlarged ×8 (`image-rendering: pixelated`) and the pixel size of every detail (anything under 1 px disappears). Take those sizes from `node <skill-dir>/scripts/scale-report.ts concept.svg`: every gap, shape and stroke must measure at least 1 px at 48 px (the command fails otherwise), and whatever drops under 1 px at 16 px is judged on the enlarged render.
   4. A context test: the avatar cropped to a circle, the single-color version on a dark background and the watermark over an image.
 
-### Phase 4: Client Iteration (from hand-drawn edit to golden fit)
+### Phase 5: Client Iteration (from hand-drawn edit to golden fit)
 1. Deliver an editable copy in cubic Béziers so the client can adjust it by hand.
 2. When the client says so, run `node <skill-dir>/scripts/series-fit.ts edited.svg --r0 <R0> --since last-copy.svg`. It finds what changed against the last copy and fits each change with an arc from the series through the same end points. Report the fit error (RMS and largest) and the tangent turn at each end. When it says NEEDS A DECISION, split the curve into two arcs or ask the client what the shape is.
 3. Apply the result to the golden component without overwriting the hand-drawn sheet, and if a shape represents something, ask what it is before turning it into something else.

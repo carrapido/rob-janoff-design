@@ -14,7 +14,7 @@ const TRANSPARENT = [0, 0, 0, 0];
 const MID_GREY = [128, 128, 128, 255];
 
 describe('rasterize: shapes and paint', () => {
-  it('fills a shape with its colour and leaves the rest transparent', () => {
+  it('fills a shape with its color and leaves the rest transparent', () => {
     const image = render('<rect width="50" height="100" fill="#ff0000"/>');
 
     assert.deepEqual(pixel(image, 25, 50), RED);
@@ -70,7 +70,7 @@ describe('rasterize: shapes and paint', () => {
     assert.deepEqual([pixel(rounded, 50, 2), pixel(rounded, 2, 2)], [BLACK, TRANSPARENT]);
   });
 
-  it('reads #rgb, #rrggbb and rgb() colours; a missing fill is black and none draws nothing', () => {
+  it('reads #rgb, #rrggbb and rgb() colors; a missing fill is black and none draws nothing', () => {
     assert.deepEqual(pixel(render('<rect width="100" height="100" fill="#f80"/>'), 50, 50), [255, 136, 0, 255]);
     assert.deepEqual(pixel(render('<rect width="100" height="100" fill="rgb(10, 20, 30)"/>'), 50, 50), [10, 20, 30, 255]);
     assert.deepEqual(pixel(render('<rect width="100" height="100"/>'), 50, 50), BLACK);

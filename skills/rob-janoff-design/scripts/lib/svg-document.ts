@@ -126,7 +126,7 @@ function addShape({ name, attributes }: Element, context: Context, reader: Reade
 
   const color = parseColor(fill);
   if (color === 'none') return;
-  if (color === undefined) reader.notDrawn.add(`colour ${fill} (drawn black)`);
+  if (color === undefined) reader.notDrawn.add(`color ${fill} (drawn black)`);
   const opacity = context.opacity * Number(context.inherited['fill-opacity'] ?? 1);
   reader.shapes.push({
     contours: parseContours(SHAPES[name](attributes)),
@@ -136,7 +136,7 @@ function addShape({ name, attributes }: Element, context: Context, reader: Reade
   });
 }
 
-// undefined when the colour is not one render-png knows.
+// undefined when the color is not one render-png knows.
 function parseColor(value: string): Color | 'none' | undefined {
   const text = value.trim().toLowerCase();
   const hex = /^#([\da-f]{3}|[\da-f]{6})$/.exec(text)?.[1];

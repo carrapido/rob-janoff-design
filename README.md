@@ -5,7 +5,7 @@ An [Agent Skill](https://agentskills.io/specification) that makes an AI agent de
 1. Do your homework: business, audience, USP.
 2. Abstract the shape: silhouette, cross-section, scale relation.
 3. Add "a wink and a smile".
-4. Deliver three SVG concepts, each tested in color, solid monochrome and at 256, 48 and 16 px.
+4. Show three one-ink SVG concepts and wait for the client's pick; then test the chosen one in color, solid monochrome, at 256, 48 and 16 px and in context.
 5. Build every curve with ruler and compass from one golden series, and fit the client's hand-drawn edits back onto it.
 
 ## Install
