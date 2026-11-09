@@ -1,6 +1,6 @@
 ---
 name: rob-janoff-design
-description: Design logos, logomarks, monograms and SVG graphics by applying the complete methodology from Rob Janoff's book "Taking a Bite out of the Apple". Use it whenever the user asks to create a logo, design a brand icon, vectorize a concept as SVG or evaluate a visual identity.
+description: Design logos, logomarks, monograms and SVG graphics by applying the complete methodology from Rob Janoff's book "Taking a Bite out of the Apple". Use it whenever the user asks to create a logo, design a brand icon, vectorize a concept as SVG, critique or evaluate a logo or visual identity, or refresh an existing logo.
 license: MIT
 ---
 
@@ -14,6 +14,40 @@ Before designing, read the matching file with your file-reading tools:
 - **For real patterns of logos, monograms and negative space (Chapter 8 and Appendices):** read `references/02-case-studies.md`.
 - **To apply the golden rules, typography, balance and the question test (Chapter 9 and Questionnaire):** read `references/03-rules-and-typography.md`.
 - **To build every curve with ruler and compass (golden series), fit the client's hand-drawn edits and test the logo in context:** read `references/04-ruler-and-compass.md`.
+
+## Pick the Mode
+
+| The client wants… | Mode | Follow |
+| --- | --- | --- |
+| A new logo, icon or monogram | **Design** | Phases 1 to 5. |
+| An opinion on an existing logo or identity | **Critique** | "Critique" below. Redraw nothing unless asked. |
+| To update a logo people already know | **Refresh** | "Critique", then "Refresh" below, then phases 3 to 5. |
+
+If the request fits more than one mode, ask which one before starting.
+
+### Critique
+1. Read `references/03-rules-and-typography.md` (golden rules and reflection test) and `references/01-apple-process.md` (silhouette and color).
+2. Measure the SVG: `render-png.ts` (open the sheet), `scale-report.ts` (what drops under 1 px at 48 and 16 px) and `series-audit.ts` only to describe how its curves are built. A logo not drawn from a series is not at fault for that. If you only have a raster image, judge it by eye and say the numbers are missing.
+3. Judge it against the five golden rules and the reflection test, with evidence: the commands' numbers and what the sheet shows.
+4. Report with this message, and change nothing unless asked:
+
+   ```markdown
+   **Verdict:** <one sentence>
+   **What people recognize (must survive):** <the shape, color or wink that carries the brand>
+   **What fails, most serious first:**
+   1. <problem>: <evidence, e.g. "the gap between the lock and the hood is 0.60 px at 48 px"> (<rule it breaks>)
+   **Golden rules:** simplicity · homework · no passing trends · balance in its environment · a wink and a smile (one line each)
+   **Next:** a refresh would <keep …, fix …>. Want me to do it?
+   ```
+
+### Refresh
+1. Start from the critique and agree with the client on what must survive. Janoff's lesson: the silhouette people know stays, while color and rendering adapt to the times; "refreshing is better than a full rebrand".
+2. Trace the logo to SVG if needed, take R0 from its main shape, and run `node <skill-dir>/scripts/series-fit.ts logo.svg --r0 <R0>`: every curve moves onto the series through its own end points, so the known shape barely moves. Report the largest error.
+3. Build three options of growing change and take them through phase 3 to the concept checkpoint, each shown beside the original:
+   - *A · Rebuild:* the same shape on the series, with every detail widened to at least 1 px at 48 px.
+   - *B · Refine:* A plus the fixes the critique found.
+   - *C · Rethink one element:* the silhouette stays and one element changes, like the README's cat (light face, a fang shaped like a 7).
+4. After the pick, phase 4 shows the chosen option beside the original.
 
 ## Mandatory Workflow
 

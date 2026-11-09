@@ -155,7 +155,13 @@ One line runs from the hair to the chin and turns into the red thread, ending in
 
 ## Usage
 
-Ask your agent for a logo, for example: *"Design the logo for a specialty coffee shop in Oaxaca"*. The skill triggers on requests to create a logo, design a brand icon, vectorize a concept in SVG or evaluate a visual identity.
+Ask your agent in plain words. The skill picks one of three modes:
+
+| Mode | Example request | What you get |
+| --- | --- | --- |
+| Design | *"Design the logo for a specialty coffee shop in Oaxaca"* | Three one-ink concepts, then the full preview of the one you pick |
+| Critique | *"Critique our logo: logo.svg"* | A verdict with evidence (renders, on-screen sizes) against Janoff's golden rules, nothing redrawn |
+| Refresh | *"Refresh our logo, people already know it: logo.svg"* | Rebuild, refine and rethink-one-element options beside the original, like the cat above |
 
 ## Repository layout
 
