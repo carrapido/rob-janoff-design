@@ -123,7 +123,7 @@ describe('fitSvg: the file', () => {
   });
 
   it('fits the four off-series curves of the cat to R1 and R-1', () => {
-    const cat = readFileSync(new URL('../assets/after.svg', import.meta.url), 'utf8');
+    const cat = readFileSync(new URL('../skills/rob-janoff-design/examples/cat/after.svg', import.meta.url), 'utf8');
     const { curves } = fitSvg(cat, OPTIONS);
 
     assert.deepEqual(curves.map((curve) => curve.best.label), ['R1', 'R-1', 'R-1', 'R1']);

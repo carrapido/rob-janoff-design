@@ -47,7 +47,7 @@ Copy `skills/rob-janoff-design/` into your agent's skills directory:
 
 ## Before
 
-<img src="./assets/before.svg" alt="Cat logo before the skill: round head, dark face with light eyes and a thin gap around the hair" width="100%">
+<img src="./skills/rob-janoff-design/examples/cat/before.svg" alt="Cat logo before the skill: round head, dark face with light eyes and a thin gap around the hair" width="100%">
 
 > A personal brand logo for a developer and video editor: a geometric cat that mixes Neco-Arc with the Superintendent from Halo 3: ODST, before running the skill.
 
@@ -57,7 +57,7 @@ Copy `skills/rob-janoff-design/` into your agent's skills directory:
 
 ## After
 
-<img src="./assets/after.svg" alt="Cat logo after the skill: light face with dark eyes, hair falling behind the head as a hood and a fang shaped like a 7" width="100%">
+<img src="./skills/rob-janoff-design/examples/cat/after.svg" alt="Cat logo after the skill: light face with dark eyes, hair falling behind the head as a hood and a fang shaped like a 7" width="100%">
 
 > The same logo after the skill's critique and the ruler-and-compass fit:
 >
@@ -79,34 +79,34 @@ Every curve of the *After* logo is an arc from one golden series, R(n) = 240 / �
 <table>
 <tr>
 <td width="33%" valign="top">
-<img src="./assets/ruler-and-compass/1-square.svg" alt="Step 1: the dashed head square and the golden-section eye line over the faded logo" width="100%">
+<img src="./skills/rob-janoff-design/examples/cat/steps/1-square.svg" alt="Step 1: the dashed head square and the golden-section eye line over the faded logo" width="100%">
 <br><strong>1 · Series and square</strong><br>
 The head's square is 2·R0 = 480. Its golden section sets the eye line.
 </td>
 <td width="33%" valign="top">
-<img src="./assets/ruler-and-compass/2-head.svg" alt="Step 2: the R0 head circle and the dashed face circle inside it" width="100%">
+<img src="./skills/rob-janoff-design/examples/cat/steps/2-head.svg" alt="Step 2: the R0 head circle and the dashed face circle inside it" width="100%">
 <br><strong>2 · Head and face</strong><br>
 The head is R0 and the face R0 − R4. The hair falls behind and the face stands out against it.
 </td>
 <td width="33%" valign="top">
-<img src="./assets/ruler-and-compass/3-ears.svg" alt="Step 3: an R1 and an R−1 circle crossing at each ear tip, with the D5 lines above and below the square" width="100%">
+<img src="./skills/rob-janoff-design/examples/cat/steps/3-ears.svg" alt="Step 3: an R1 and an R−1 circle crossing at each ear tip, with the D5 lines above and below the square" width="100%">
 <br><strong>3 · Ears</strong><br>
 Each ear is the lens between an R1 circle and an R−1 circle. The tip sits D5 above the square.
 </td>
 </tr>
 <tr>
 <td width="33%" valign="top">
-<img src="./assets/ruler-and-compass/4-fringe.svg" alt="Step 4: six R1 circles along the fringe and four large R−1 circles along the locks" width="100%">
+<img src="./skills/rob-janoff-design/examples/cat/steps/4-fringe.svg" alt="Step 4: six R1 circles along the fringe and four large R−1 circles along the locks" width="100%">
 <br><strong>4 · Fringe and locks</strong><br>
 Six R1 arcs draw the fringe. Four R−1 arcs, tangent to the head, draw the locks.
 </td>
 <td width="33%" valign="top">
-<img src="./assets/ruler-and-compass/5-features.svg" alt="Step 5: two crossing R3 circles for each eye and the fang's slope drawn as a 7" width="100%">
+<img src="./skills/rob-janoff-design/examples/cat/steps/5-features.svg" alt="Step 5: two crossing R3 circles for each eye and the fang's slope drawn as a 7" width="100%">
 <br><strong>5 · Eyes and mouth</strong><br>
 Each eye is where two R3 circles cross. The fang drops R3 and moves in R4: a φ slope that reads as a 7.
 </td>
 <td width="33%" valign="top">
-<img src="./assets/ruler-and-compass/6-hood.svg" alt="Step 6: R2 circles at the hood's lower corners, the head square and the D5 lines at top and bottom" width="100%">
+<img src="./skills/rob-janoff-design/examples/cat/steps/6-hood.svg" alt="Step 6: R2 circles at the hood's lower corners, the head square and the D5 lines at top and bottom" width="100%">
 <br><strong>6 · Hood and frame</strong><br>
 R2 corners and a bottom D5 below the square, the same D5 as the ears, so the margins match top and bottom.
 </td>
@@ -120,7 +120,7 @@ A second example, starting from a hand-drawn sketch ([@marsanwishito](https://ww
 <table>
 <tr>
 <td width="33%" valign="top">
-<img src="./assets/sketch-to-concepts/1-reference.svg" alt="The sketch traced in vectors with the pencil's varying width; the heart badge and the thread are red" width="100%">
+<img src="./skills/rob-janoff-design/examples/sketch-to-concepts/1-reference.svg" alt="The sketch traced in vectors with the pencil's varying width; the heart badge and the thread are red" width="100%">
 <br><strong>Reference</strong><br>
 The sketch traced in vectors, keeping the pencil's width.
 </td>
@@ -136,17 +136,17 @@ All three start from the same one-ink head: the hair is the mass and the face is
 </tr>
 <tr>
 <td width="33%" valign="top">
-<img src="./assets/sketch-to-concepts/2-concept-a.svg" alt="Concept A: a solid head built from circular arcs, the fringe cut straight across the face leaving one eye" width="100%">
+<img src="./skills/rob-janoff-design/examples/sketch-to-concepts/2-concept-a.svg" alt="Concept A: a solid head built from circular arcs, the fringe cut straight across the face leaving one eye" width="100%">
 <br><strong>A · Silhouette and cut</strong><br>
 The fringe becomes a straight cut that leaves one eye. Every arc is a Fibonacci radius × 1.5 (89, 55, 13, 8, 3). At 16 px the head and the cut still read.
 </td>
 <td width="33%" valign="top">
-<img src="./assets/sketch-to-concepts/3-concept-b.svg" alt="Concept B: red hair shaped like an upside-down heart, with the face as the hole inside it" width="100%">
+<img src="./skills/rob-janoff-design/examples/sketch-to-concepts/3-concept-b.svg" alt="Concept B: red hair shaped like an upside-down heart, with the face as the hole inside it" width="100%">
 <br><strong>B · Negative-space wink</strong><br>
 The heart on her chest becomes her hair: an upside-down heart with the face as its hole. Turn it 180° and the heart appears.
 </td>
 <td width="33%" valign="top">
-<img src="./assets/sketch-to-concepts/4-concept-c.svg" alt="Concept C: one black line draws the hair and face and turns into a red thread ending in a heart" width="100%">
+<img src="./skills/rob-janoff-design/examples/sketch-to-concepts/4-concept-c.svg" alt="Concept C: one black line draws the hair and face and turns into a red thread ending in a heart" width="100%">
 <br><strong>C · Graphic continuum</strong><br>
 One line runs from the hair to the chin and turns into the red thread, ending in her heart. At 16 px the line breaks up, so an icon needs a simpler cut.
 </td>
@@ -178,9 +178,9 @@ Every run is a full agent session billed to your account; add `--runs 1` and `--
 ```
 .
 ├── .claude-plugin/
-│   └── marketplace.json        # Claude Code plugin marketplace
+│   ├── marketplace.json        # Claude Code plugin marketplace
+│   └── plugin.json             # Plugin manifest
 ├── AGENTS.md                   # Install steps the agent follows
-├── assets/                     # README images: before/after, ruler-and-compass and sketch-to-concepts steps
 ├── evals/                      # One claude plugin eval case per mode: design, critique, refresh
 ├── tests/                      # Tests for the skill's scripts: npm test
 └── skills/
@@ -191,6 +191,9 @@ Every run is a full agent session billed to your account; add `--runs 1` and `--
         │   ├── 02-case-studies.md
         │   ├── 03-rules-and-typography.md
         │   └── 04-ruler-and-compass.md   # Golden-series construction, hand-edit fitting, tests
+        ├── examples/           # Worked examples, also the README images
+        │   ├── cat.md          # Critique and refresh of the cat, step by step with the series
+        │   └── sketch-to-concepts.md     # Three different concepts from one sketch
         └── scripts/            # Node 24, no dependencies
             ├── series-audit.ts # Checks that every curve is an arc of the golden series
             ├── series-fit.ts   # Fits the client's hand-drawn edits back onto the series

@@ -5,7 +5,7 @@ import { auditSvg, type AuditReport } from '../skills/rob-janoff-design/scripts/
 import { assertClose, assertPointClose } from './helpers/assert-close.ts';
 
 const OPTIONS = { r0: 240, tolerance: 0.48 };
-// Half circles centered on (500, 540), the head's center in assets/after.svg.
+// Half circles centered on (500, 540), the head's center in examples/cat/after.svg.
 const HEAD_R0 = 'M260 540 A240 240 0 0 1 740 540';
 const FACE_R0_MINUS_R4 = 'M295.02 540 A204.98 204.98 0 0 1 704.98 540';
 const HAIR_GAP_R0_PLUS_D7 = 'M243.47 540 A256.53 256.53 0 0 1 756.53 540';
@@ -72,7 +72,7 @@ describe('auditSvg', () => {
   });
 
   it('recognises the constructions the README names in the cat logo', () => {
-    const cat = readFileSync(new URL('../assets/after.svg', import.meta.url), 'utf8');
+    const cat = readFileSync(new URL('../skills/rob-janoff-design/examples/cat/after.svg', import.meta.url), 'utf8');
     const labels = auditSvg(cat, OPTIONS).rows.flatMap((row) => (row.verdict.kind === 'on-series' ? [row.verdict.label] : []));
 
     for (const construction of ['R-1', 'R0', 'R1', 'R2', 'R3', 'R0-R4', 'R0+D7']) {

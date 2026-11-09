@@ -129,7 +129,7 @@ describe('rasterize: transforms and hidden content', () => {
   });
 
   it('renders the cat: cream background, dark eye', () => {
-    const cat = readFileSync(new URL('../assets/after.svg', import.meta.url), 'utf8');
+    const cat = readFileSync(new URL('../skills/rob-janoff-design/examples/cat/after.svg', import.meta.url), 'utf8');
     const image = rasterize(readSvgDocument(cat), 256);
 
     assert.deepEqual(pixel(image, 1, 1), [242, 240, 234, 255]);

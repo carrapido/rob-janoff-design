@@ -91,7 +91,7 @@ describe('measureScale details', () => {
   });
 
   it('measures the D7 gap between the ear and the head in the cat logo', () => {
-    const cat = readFileSync(new URL('../assets/after.svg', import.meta.url), 'utf8');
+    const cat = readFileSync(new URL('../skills/rob-janoff-design/examples/cat/after.svg', import.meta.url), 'utf8');
     const report = measureScale(cat);
     const earGap = gapsOf(report).find((gap) => gap.contours.includes(3));
 

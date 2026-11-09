@@ -15,6 +15,11 @@ Before designing, read the matching file with your file-reading tools:
 - **To apply the golden rules, typography, balance and the question test (Chapter 9 and Questionnaire):** read `references/03-rules-and-typography.md`.
 - **To build every curve with ruler and compass (golden series), fit the client's hand-drawn edits and test the logo in context:** read `references/04-ruler-and-compass.md`.
 
+## Worked examples
+Each one has its SVG files next to it, so you can run the commands on them:
+- **Before a critique or a refresh, and to see a full ruler-and-compass construction:** read `examples/cat.md` (the cat before and after, its critique with numbers, and the six construction steps).
+- **Before drawing the three concepts of phase 3:** read `examples/sketch-to-concepts.md`. Each concept pulls a different detail out of the source, so the three are different ideas, not one silhouette with three treatments.
+
 ## Pick the Mode
 
 | The client wants… | Mode | Follow |
