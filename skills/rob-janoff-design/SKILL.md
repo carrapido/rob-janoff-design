@@ -38,7 +38,7 @@ Before designing, read the matching file with your file-reading tools:
 - **Visual deliverable:** Generate an HTML/React preview file that shows each option as:
   1. A color version tied to the USP.
   2. A solid monochrome version (black/white) proving the silhouette survives on its own.
-  3. A scale test (a logo "has to work on a tiny button and a huge billboard"): rendered at `256px`, `48px` and `16px`, with the 16 px render enlarged ×8 and the pixel size of every detail (anything under 1 px disappears).
+  3. A scale test (a logo "has to work on a tiny button and a huge billboard"): rendered at `256px`, `48px` and `16px`, with the 16 px render enlarged ×8 and the pixel size of every detail (anything under 1 px disappears). Take those sizes from `node <skill-dir>/scripts/scale-report.ts concept.svg`: every gap, shape and stroke must measure at least 1 px at 48 px (the command fails otherwise), and whatever drops under 1 px at 16 px is judged on the enlarged render.
   4. A context test: the avatar cropped to a circle, the single-color version on a dark background and the watermark over an image.
 
 ### Phase 4: Client Iteration (from hand-drawn edit to golden fit)

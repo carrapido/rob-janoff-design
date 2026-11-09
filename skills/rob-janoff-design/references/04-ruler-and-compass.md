@@ -32,7 +32,7 @@ The client draws, the agent measures. This way no shapes are imposed on the clie
 
 ## 4. Tests Beyond Color, Monochrome and 256 / 48 / 16 px
 
-- **Scale in numbers:** The on-screen size of a detail is `measurement × px ÷ frame width`. Anything under 1 px disappears: a 10-unit gap in a 700-unit frame measures 0.7 px at 48 px, while at D7 (16.6) it already measures 1.1 px.
+- **Scale in numbers:** The on-screen size of a detail is `measurement × px ÷ frame width`. Anything under 1 px disappears: a 10-unit gap in a 700-unit frame measures 0.7 px at 48 px, while at D7 (16.6) it already measures 1.1 px. `node <skill-dir>/scripts/scale-report.ts logo.svg` computes it for each contour's narrowest gap to another contour, each contour's size and each stroke width. Thin parts inside one contour (a neck, a sharp tip) still need the enlarged 16 px render.
 - **Real pixels:** Show the 16 px render enlarged ×8 with [`image-rendering: pixelated`](https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering).
 - **Avatar:** Most social networks crop the avatar to a circle. Compute the smallest circle that contains the mark and frame it with a series margin (R4); the square's inscribed circle usually cuts off the tips.
 - **Dark background and watermark:** A single-color version with an [SVG mask](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/mask) made from the same shapes (ink → white, paper → black), so the face and the gaps stay cut out. With several copies on one page, each mask needs its own id (a hash of what it draws).

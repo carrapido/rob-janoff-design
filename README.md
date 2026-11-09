@@ -175,7 +175,8 @@ Ask your agent for a logo, for example: *"Design the logo for a specialty coffee
         │   ├── 03-rules-and-typography.md
         │   └── 04-ruler-and-compass.md   # Golden-series construction, hand-edit fitting, tests
         └── scripts/            # Node 24, no dependencies
-            └── series-audit.ts # Checks that every curve is an arc of the golden series
+            ├── series-audit.ts # Checks that every curve is an arc of the golden series
+            └── scale-report.ts # On-screen size of every gap, shape and stroke at 256, 48 and 16 px
 ```
 
 ## Disclaimer

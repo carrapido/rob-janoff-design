@@ -4,6 +4,7 @@ import type { Point } from '../skills/rob-janoff-design/scripts/lib/geometry.ts'
 import {
   coordinateRounding,
   extractPathData,
+  parseContours,
   parsePathData,
   type LineSegment,
 } from '../skills/rob-janoff-design/scripts/lib/svg-path.ts';
@@ -100,6 +101,19 @@ describe('coordinateRounding', () => {
   it('is half of the last decimal place written in the path data', () => {
     assert.equal(coordinateRounding('M1.25 3.5L2 2'), 0.005);
     assert.equal(coordinateRounding('M1 2L3 4'), 0.5);
+  });
+});
+
+describe('parseContours', () => {
+  it('groups the segments of each subpath into one contour', () => {
+    assert.deepEqual(parseContours('M0 0 L10 0 L10 10 Z M20 20 L30 20'), [
+      [line(0, 0, 10, 0), line(10, 0, 10, 10), line(10, 10, 0, 0)],
+      [line(20, 20, 30, 20)],
+    ]);
+  });
+
+  it('drops a move that draws nothing', () => {
+    assert.deepEqual(parseContours('M0 0 M5 5 L10 5'), [[line(5, 5, 10, 5)]]);
   });
 });
 

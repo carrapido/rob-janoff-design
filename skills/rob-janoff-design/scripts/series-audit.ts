@@ -2,18 +2,23 @@
 // Exit codes: 0 every measurable curve is on the series, 1 a circle is off the series or not
 // a circle, 2 the file could not be audited.
 import { readFileSync } from 'node:fs';
-import { parseArgs } from 'node:util';
 import { auditSvg, type AuditOptions, type AuditReport, type CircleRow, type Verdict } from './lib/audit.ts';
-import type { Point } from './lib/geometry.ts';
+import {
+  EXIT_PASS,
+  EXIT_PROBLEMS,
+  formatNumber,
+  formatPoint,
+  isPositive,
+  readCommandLine,
+  runCommand,
+  UsageError,
+} from './lib/cli.ts';
 
 type Request = { file: string; options: AuditOptions };
 
 const USAGE = 'Usage: node series-audit.ts <logo.svg> --r0 <R0> [--tolerance <units>]';
 // 0.48 units on the cat's 240-unit head: wider than two-decimal rounding, far narrower than a radius set by eye.
 const DEFAULT_TOLERANCE_RATIO = 1 / 500;
-const EXIT_PASS = 0;
-const EXIT_PROBLEMS = 1;
-const EXIT_ERROR = 2;
 const SECTIONS: { kind: Verdict['kind']; title: string }[] = [
   { kind: 'off-series', title: 'OFF SERIES' },
   { kind: 'not-circular', title: 'NOT CIRCULAR' },
@@ -21,24 +26,17 @@ const SECTIONS: { kind: Verdict['kind']; title: string }[] = [
   { kind: 'on-series', title: 'ON SERIES' },
 ];
 
-class UsageError extends Error {}
+runCommand(USAGE, () => main(process.argv.slice(2)));
 
-main(process.argv.slice(2));
-
-function main(args: string[]): void {
-  try {
-    const { file, options } = parseRequest(args);
-    const report = auditSvg(readFileSync(file, 'utf8'), options);
-    console.log(formatReport(file, options, report));
-    process.exitCode = report.rows.some(isProblem) ? EXIT_PROBLEMS : EXIT_PASS;
-  } catch (error) {
-    console.error(error instanceof UsageError ? `${error.message}\n${USAGE}` : String(error));
-    process.exitCode = EXIT_ERROR;
-  }
+function main(args: string[]): number {
+  const { file, options } = parseRequest(args);
+  const report = auditSvg(readFileSync(file, 'utf8'), options);
+  console.log(formatReport(file, options, report));
+  return report.rows.some(isProblem) ? EXIT_PROBLEMS : EXIT_PASS;
 }
 
 function parseRequest(args: string[]): Request {
-  const { values, positionals } = readArguments(args);
+  const { values, positionals } = readCommandLine(args, { r0: { type: 'string' }, tolerance: { type: 'string' } });
   const r0 = Number(values.r0);
   if (positionals.length !== 1 || !isPositive(r0)) {
     throw new UsageError('Give one SVG file and a positive --r0.');
@@ -47,23 +45,6 @@ function parseRequest(args: string[]): Request {
   const tolerance = values.tolerance === undefined ? r0 * DEFAULT_TOLERANCE_RATIO : Number(values.tolerance);
   if (!isPositive(tolerance)) throw new UsageError('--tolerance must be a positive number.');
   return { file: positionals[0], options: { r0, tolerance } };
-}
-
-// https://nodejs.org/docs/latest-v24.x/api/util.html#utilparseargsconfig
-function readArguments(args: string[]) {
-  try {
-    return parseArgs({
-      args,
-      allowPositionals: true,
-      options: { r0: { type: 'string' }, tolerance: { type: 'string' } },
-    });
-  } catch (error) {
-    throw new UsageError(error instanceof Error ? error.message : String(error));
-  }
-}
-
-function isPositive(value: number): boolean {
-  return Number.isFinite(value) && value > 0;
 }
 
 function formatReport(file: string, options: AuditOptions, report: AuditReport): string {
@@ -125,14 +106,6 @@ function isProblem(row: CircleRow): boolean {
   return row.verdict.kind === 'off-series' || row.verdict.kind === 'not-circular';
 }
 
-function formatPoint({ x, y }: Point): string {
-  return `(${formatNumber(x)}, ${formatNumber(y)})`;
-}
-
 function formatSigned(value: number): string {
   return `${value >= 0 ? '+' : ''}${formatNumber(value)}`;
-}
-
-function formatNumber(value: number): string {
-  return value.toFixed(2);
 }

@@ -33,7 +33,12 @@ export function extractPathData(svg: string): string[] {
 }
 
 export function parsePathData(pathData: string): Segment[] {
-  return toSegments(readCommands(pathData));
+  return parseContours(pathData).flat();
+}
+
+// One contour per subpath: a subpath ends at the next M or right after Z.
+export function parseContours(pathData: string): Segment[][] {
+  return toContours(readCommands(pathData)).filter((contour) => contour.length > 0);
 }
 
 export function coordinateRounding(pathData: string): number {
@@ -75,21 +80,23 @@ function implicitFollower(letter: string): string {
   return letter;
 }
 
-function toSegments(commands: Command[]): Segment[] {
-  const segments: Segment[] = [];
+function toContours(commands: Command[]): Segment[][] {
+  const contours: Segment[][] = [[]];
   let pen: Pen = { at: ORIGIN, subpathStart: ORIGIN, previous: undefined };
   for (const command of commands) {
     const absolute = toAbsolute(command, pen.at);
     if (absolute.letter === 'M') {
       const start = pointAt(absolute.args, 0);
       pen = { at: start, subpathStart: start, previous: undefined };
+      contours.push([]);
     } else {
       const segment = segmentFor(absolute, pen);
-      segments.push(segment);
+      contours[contours.length - 1].push(segment);
       pen = { ...pen, at: segment.to, previous: segment };
+      if (absolute.letter === 'Z') contours.push([]);
     }
   }
-  return segments;
+  return contours;
 }
 
 function toAbsolute({ letter, args }: Command, at: Point): Command {
