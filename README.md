@@ -39,6 +39,37 @@ Copy `skills/rob-janoff-design/` into your agent's skills directory:
 
 </details>
 
+## What changes
+
+<table>
+<tr>
+<td width="50%">
+
+## Before
+
+<img src="./assets/before.png" alt="Cat logo before the skill: round head, dark face with light eyes and a thin gap around the hair" width="100%">
+
+> A personal brand logo for a developer and video editor: a geometric cat that mixes Neco-Arc with the Superintendent from Halo 3: ODST, before running the skill.
+
+</td>
+
+<td width="50%">
+
+## After
+
+<img src="./assets/after.png" alt="Cat logo after the skill: light face with dark eyes, hair falling behind the head as a hood and a fang shaped like a 7" width="100%">
+
+> The same logo after the skill's critique and the ruler-and-compass fit:
+>
+> 1. The face turns light, so the fringe is the edge between two tones instead of a thin gap that vanishes below 48 px.
+> 2. The hair falls behind the head as a hood, built from the same golden series.
+> 3. The fang becomes a 7, a wink to Bungie.
+> 4. The gap around the hair widens to D7, so it still shows at 48 px.
+
+</td>
+</tr>
+</table>
+
 ## Usage
 
 Ask your agent for a logo, for example: *"Design the logo for a specialty coffee shop in Oaxaca"*. The skill triggers on requests to create a logo, design a brand icon, vectorize a concept in SVG or evaluate a visual identity.
@@ -50,6 +81,7 @@ Ask your agent for a logo, for example: *"Design the logo for a specialty coffee
 ├── .claude-plugin/
 │   └── marketplace.json        # Claude Code plugin marketplace
 ├── AGENTS.md                   # Install steps the agent follows
+├── assets/                     # README before/after images
 └── skills/
     └── rob-janoff-design/
         ├── SKILL.md            # Workflow the agent follows
