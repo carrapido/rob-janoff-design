@@ -17,6 +17,7 @@ Every curve of the logo is an arc of a circle from **a single series**; no measu
 4. **Joins without kinks:** Where two curves meet, use a tangent arc: its center lies on the line from the first arc's center through the contact point. A single tangent arc cannot pass through a corner; chain two there (an R4 eyelid that continues, tangent, into an R−1 arc).
 5. **Framing:** Margins also come from the series. For the optical center, leave top and bottom margins in a 1 : φ ratio (for example, R2 on top and R1 at the bottom).
 6. **Document the construction:** In the code, every measurement carries the name of its series step, so whoever reads it can rebuild it.
+7. **Audit:** `node <skill-dir>/scripts/series-audit.ts logo.svg --r0 240` measures every `A` arc and every Bézier as a circle. It accepts a radius on one step, or a concentric offset of a series circle (the face `R0 − R4` around the head `R0`, the hair gap `R0 + D7`), and lists the rest with the nearest step. A Bézier's center is where its end normals cross, which is exact for the cubic copy of section 3.
 
 ## 3. From Hand-Drawn Edit to Golden Fit
 

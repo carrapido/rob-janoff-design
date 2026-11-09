@@ -38,8 +38,10 @@ Delete `<skills-directory>/rob-janoff-design/`.
 | --- | --- |
 | `skills/rob-janoff-design/SKILL.md` | The skill: workflow the agent follows. |
 | `skills/rob-janoff-design/references/` | Book chapters and the ruler-and-compass method, loaded on demand. |
+| `skills/rob-janoff-design/scripts/` | `series-audit.ts`: checks every curve against the golden series (Node 24). |
+| `tests/` | Tests for the scripts. |
 | `.claude-plugin/marketplace.json` | Claude Code plugin marketplace. |
 
 ## Verification
 
-After changing the repository, run `claude plugin validate .` and report the result.
+After changing the repository, run `claude plugin validate .`, `npm test` and `npm run typecheck`, and report the results.

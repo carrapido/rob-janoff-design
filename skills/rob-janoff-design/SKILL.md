@@ -30,6 +30,7 @@ Before designing, read the matching file with your file-reading tools:
 ### Phase 3: Pure SVG Execution and 3 Options
 - **"When in doubt, leave it out":** No literal, engraving-style illustrations (avoid the mistake of Ron Wayne's original Apple logo). Use only solid silhouettes (`fill`), geometric subtraction and negative space.
 - **Ruler and compass:** Every curve is an arc from a single golden series, `R(n) = R0 / φⁿ`, and every position is a distance from that series; no measurement is set by eye. In the code, name the series step of each measurement.
+- **Audit the series:** Before showing a concept, run `node <skill-dir>/scripts/series-audit.ts concept.svg --r0 <R0>` (Node 24 or later; in Claude Code, `<skill-dir>` is `${CLAUDE_SKILL_DIR}`). Fix every circle it lists as OFF SERIES or NOT CIRCULAR. An AMBIGUOUS curve is too flat to measure, so name its step in the code. If Node is not available, say so instead of claiming the check passed.
 - **Always present 3 conceptual options**, so the client owns the choice without being overwhelmed:
   - *Concept A:* Essential Silhouette + Human-Scale Cut.
   - *Concept B:* Negative-Space Wink (FedEx style).

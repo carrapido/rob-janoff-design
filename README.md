@@ -165,14 +165,17 @@ Ask your agent for a logo, for example: *"Design the logo for a specialty coffee
 │   └── marketplace.json        # Claude Code plugin marketplace
 ├── AGENTS.md                   # Install steps the agent follows
 ├── assets/                     # README images: before/after, ruler-and-compass and sketch-to-concepts steps
+├── tests/                      # Tests for the skill's scripts: npm test
 └── skills/
     └── rob-janoff-design/
         ├── SKILL.md            # Workflow the agent follows
-        └── references/         # Loaded on demand
-            ├── 01-apple-process.md
-            ├── 02-case-studies.md
-            ├── 03-rules-and-typography.md
-            └── 04-ruler-and-compass.md   # Golden-series construction, hand-edit fitting, tests
+        ├── references/         # Loaded on demand
+        │   ├── 01-apple-process.md
+        │   ├── 02-case-studies.md
+        │   ├── 03-rules-and-typography.md
+        │   └── 04-ruler-and-compass.md   # Golden-series construction, hand-edit fitting, tests
+        └── scripts/            # Node 24, no dependencies
+            └── series-audit.ts # Checks that every curve is an arc of the golden series
 ```
 
 ## Disclaimer
