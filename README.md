@@ -113,6 +113,46 @@ R2 corners and a bottom D5 below the square, the same D5 as the ears, so the mar
 </tr>
 </table>
 
+## From a sketch to three concepts
+
+A second example, starting from a hand-drawn sketch ([@marsanwishito](https://www.tiktok.com/@marsanwishito)): a melancholic girl with a side fringe over one eye and a red heart on her chest, tied by a red thread to a poster. The brief was a T-shirt logo: vectorize her head and hair, imagine how the hair falls behind her head, then design. Each concept pulls a different detail out of the drawing.
+
+<table>
+<tr>
+<td width="33%" valign="top">
+<img src="./assets/sketch-to-concepts/1-reference.svg" alt="The sketch traced in vectors with the pencil's varying width; the heart badge and the thread are red" width="100%">
+<br><strong>Reference</strong><br>
+The sketch traced in vectors, keeping the pencil's width.
+</td>
+<td colspan="2" valign="top">
+<strong>Three details, three concepts</strong>
+
+1. **The fringe over one eye** becomes the cut of concept A.
+2. **The heart on her chest** becomes the hair of concept B.
+3. **The red thread** becomes the single line of concept C.
+
+All three start from the same one-ink head: the hair is the mass and the face is the hole.
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top">
+<img src="./assets/sketch-to-concepts/2-concept-a.svg" alt="Concept A: a solid head built from circular arcs, the fringe cut straight across the face leaving one eye" width="100%">
+<br><strong>A · Silhouette and cut</strong><br>
+The fringe becomes a straight cut that leaves one eye. Every arc is a Fibonacci radius × 1.5 (89, 55, 13, 8, 3). At 16 px the head and the cut still read.
+</td>
+<td width="33%" valign="top">
+<img src="./assets/sketch-to-concepts/3-concept-b.svg" alt="Concept B: red hair shaped like an upside-down heart, with the face as the hole inside it" width="100%">
+<br><strong>B · Negative-space wink</strong><br>
+The heart on her chest becomes her hair: an upside-down heart with the face as its hole. Turn it 180° and the heart appears.
+</td>
+<td width="33%" valign="top">
+<img src="./assets/sketch-to-concepts/4-concept-c.svg" alt="Concept C: one black line draws the hair and face and turns into a red thread ending in a heart" width="100%">
+<br><strong>C · Graphic continuum</strong><br>
+One line runs from the hair to the chin and turns into the red thread, ending in her heart. At 16 px the line breaks up, so an icon needs a simpler cut.
+</td>
+</tr>
+</table>
+
 ## Usage
 
 Ask your agent for a logo, for example: *"Design the logo for a specialty coffee shop in Oaxaca"*. The skill triggers on requests to create a logo, design a brand icon, vectorize a concept in SVG or evaluate a visual identity.
@@ -124,7 +164,7 @@ Ask your agent for a logo, for example: *"Design the logo for a specialty coffee
 ├── .claude-plugin/
 │   └── marketplace.json        # Claude Code plugin marketplace
 ├── AGENTS.md                   # Install steps the agent follows
-├── assets/                     # README images: before/after and ruler-and-compass steps
+├── assets/                     # README images: before/after, ruler-and-compass and sketch-to-concepts steps
 └── skills/
     └── rob-janoff-design/
         ├── SKILL.md            # Workflow the agent follows
