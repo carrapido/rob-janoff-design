@@ -43,21 +43,21 @@ Copy `skills/rob-janoff-design/` into your agent's skills directory:
 
 <table>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 ## Before
 
-<img src="./assets/before.png" alt="Cat logo before the skill: round head, dark face with light eyes and a thin gap around the hair" width="100%">
+<img src="./assets/before.svg" alt="Cat logo before the skill: round head, dark face with light eyes and a thin gap around the hair" width="100%">
 
 > A personal brand logo for a developer and video editor: a geometric cat that mixes Neco-Arc with the Superintendent from Halo 3: ODST, before running the skill.
 
 </td>
 
-<td width="50%">
+<td width="50%" valign="top">
 
 ## After
 
-<img src="./assets/after.png" alt="Cat logo after the skill: light face with dark eyes, hair falling behind the head as a hood and a fang shaped like a 7" width="100%">
+<img src="./assets/after.svg" alt="Cat logo after the skill: light face with dark eyes, hair falling behind the head as a hood and a fang shaped like a 7" width="100%">
 
 > The same logo after the skill's critique and the ruler-and-compass fit:
 >
