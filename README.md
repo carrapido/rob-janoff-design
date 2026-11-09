@@ -177,7 +177,8 @@ Ask your agent for a logo, for example: *"Design the logo for a specialty coffee
         └── scripts/            # Node 24, no dependencies
             ├── series-audit.ts # Checks that every curve is an arc of the golden series
             ├── series-fit.ts   # Fits the client's hand-drawn edits back onto the series
-            └── scale-report.ts # On-screen size of every gap, shape and stroke at 256, 48 and 16 px
+            ├── scale-report.ts # On-screen size of every gap, shape and stroke at 256, 48 and 16 px
+            └── render-png.ts   # PNGs at 256, 48 and 16 px and a sheet to look at before showing
 ```
 
 ## Disclaimer

@@ -24,6 +24,10 @@ export function cross(a: Point, b: Point): number {
   return a.x * b.y - a.y * b.x;
 }
 
+export function toRadians(degrees: number): number {
+  return (degrees * Math.PI) / 180;
+}
+
 export function closestPointOnSegment(point: Point, from: Point, to: Point): Point {
   const direction = subtract(to, from);
   const lengthSquared = dot(direction, direction);

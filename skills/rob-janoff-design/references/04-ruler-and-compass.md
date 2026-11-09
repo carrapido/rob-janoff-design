@@ -33,11 +33,11 @@ The client draws, the agent measures. This way no shapes are imposed on the clie
 ## 4. Tests Beyond Color, Monochrome and 256 / 48 / 16 px
 
 - **Scale in numbers:** The on-screen size of a detail is `measurement × px ÷ frame width`. Anything under 1 px disappears: a 10-unit gap in a 700-unit frame measures 0.7 px at 48 px, while at D7 (16.6) it already measures 1.1 px. `node <skill-dir>/scripts/scale-report.ts logo.svg` computes it for each contour's narrowest gap to another contour, each contour's size and each stroke width. Thin parts inside one contour (a neck, a sharp tip) still need the enlarged 16 px render.
-- **Real pixels:** Show the 16 px render enlarged ×8 with [`image-rendering: pixelated`](https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering).
+- **Real pixels:** `node <skill-dir>/scripts/render-png.ts logo.svg` writes PNGs at 256, 48 and 16 px and a sheet with the 16 px render enlarged ×8; look at the sheet before showing anything. In the HTML preview, show the 16 px PNG enlarged ×8 with [`image-rendering: pixelated`](https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering).
 - **Avatar:** Most social networks crop the avatar to a circle. Compute the smallest circle that contains the mark and frame it with a series margin (R4); the square's inscribed circle usually cuts off the tips.
 - **Dark background and watermark:** A single-color version with an [SVG mask](https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/mask) made from the same shapes (ink → white, paper → black), so the face and the gaps stay cut out. With several copies on one page, each mask needs its own id (a hash of what it draws).
 - **Usage mockup:** Test the logo where it will live (avatar, header, watermark at 10–25 % over an image), not only in isolation.
-- **Real browser:** Check in a browser as well as in the script's rasterizer; stroke joins and masks can look different.
+- **Real browser:** `render-png` draws fills only and lists what it leaves out (strokes, masks, gradients, text). Check those in a browser; stroke joins and masks can also look different there.
 
 ## 5. Traps That Already Showed Up
 

@@ -1,6 +1,6 @@
 // Endpoint-to-center conversion of an SVG arc, so it can be measured and sampled.
 // https://www.w3.org/TR/SVG2/implnote.html#ArcConversionEndpointToCenter
-import { add, cross, dot, midpoint, type Point } from './geometry.ts';
+import { add, cross, dot, midpoint, toRadians, type Point } from './geometry.ts';
 import type { ArcSegment } from './svg-path.ts';
 
 export type ArcParameters = {
@@ -86,8 +86,4 @@ function rotate(point: Point, angle: number): Point {
     x: Math.cos(angle) * point.x - Math.sin(angle) * point.y,
     y: Math.sin(angle) * point.x + Math.cos(angle) * point.y,
   };
-}
-
-function toRadians(degrees: number): number {
-  return (degrees * Math.PI) / 180;
 }

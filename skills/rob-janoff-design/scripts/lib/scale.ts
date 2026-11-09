@@ -2,6 +2,7 @@
 // The rule: references/04-ruler-and-compass.md, section 4.
 import { flattenContour } from './contours.ts';
 import { closestPointOnSegment, cross, distance, midpoint, subtract, type Point } from './geometry.ts';
+import { readViewBox } from './svg-document.ts';
 import { extractPathData, parseContours } from './svg-path.ts';
 
 export type Detail =
@@ -16,7 +17,6 @@ type ContourPair = Gap & { first: number; second: number };
 
 // One step per pixel at 256 px keeps the flattened curves within a hundredth of a pixel of the real ones.
 const STEPS_PER_FRAME = 256;
-const VIEW_BOX = /<svg\b[^>]*?\sviewBox\s*=\s*["']([^"']+)["']/;
 const STROKE_WIDTH = /stroke-width\s*[:=]\s*["']?\s*([\d.]+)/g;
 
 export function measureScale(svg: string): ScaleReport {
@@ -39,21 +39,8 @@ export function hiddenAt(report: ScaleReport, sizeInPixels: number): Detail[] {
 }
 
 function frameSize(svg: string): number {
-  const viewBox = VIEW_BOX.exec(svg)?.[1];
-  const [width, height] = viewBox
-    ? viewBox.trim().split(/[\s,]+/).slice(2).map(Number)
-    : [svgSizeAttribute(svg, 'width'), svgSizeAttribute(svg, 'height')];
-  const frame = Math.max(width, height);
-  if (Number.isNaN(frame) || frame <= 0) {
-    throw new Error('The SVG needs a viewBox (or a width and height) to know its frame.');
-  }
-  return frame;
-}
-
-// A plain number or a px length; a percentage says nothing about the frame.
-function svgSizeAttribute(svg: string, name: string): number {
-  const match = new RegExp(String.raw`<svg\b[^>]*?\s${name}\s*=\s*["']([\d.]+)(?:px)?["']`).exec(svg);
-  return Number(match?.[1]);
+  const { width, height } = readViewBox(svg);
+  return Math.max(width, height);
 }
 
 function contourPairs(contours: Point[][]): ContourPair[] {
