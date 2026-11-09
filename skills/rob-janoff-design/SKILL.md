@@ -42,9 +42,9 @@ If the request fits more than one mode, ask which one before starting.
 
 ### Refresh
 1. Start from the critique and agree with the client on what must survive. Janoff's lesson: the silhouette people know stays, while color and rendering adapt to the times; "refreshing is better than a full rebrand".
-2. Trace the logo to SVG if needed, take R0 from its main shape, and run `node <skill-dir>/scripts/series-fit.ts logo.svg --r0 <R0>`: every curve moves onto the series through its own end points, so the known shape barely moves. Report the largest error.
-3. Build three options of growing change and take them through phase 3 to the concept checkpoint, each shown beside the original:
-   - *A · Rebuild:* the same shape on the series, with every detail widened to at least 1 px at 48 px.
+2. Before building any option, trace the logo to SVG if needed, take R0 from its main shape, and run `node <skill-dir>/scripts/series-fit.ts logo.svg --r0 <R0>`: every curve moves onto the series through its own end points, so the known shape barely moves. Report the largest error.
+3. Build three options of growing change and take them through phase 3 to the concept checkpoint, each shown beside the original. Every option passes `series-audit.ts` and "Look before showing" before the checkpoint, not after the pick:
+   - *A · Rebuild:* the original with the `A` commands from step 2 pasted in, then every detail widened to at least 1 px at 48 px.
    - *B · Refine:* A plus the fixes the critique found.
    - *C · Rethink one element:* the silhouette stays and one element changes, like the README's cat (light face, a fang shaped like a 7).
 4. After the pick, phase 4 shows the chosen option beside the original.
@@ -69,7 +69,7 @@ If the request fits more than one mode, ask which one before starting.
   - *Concept C:* Graphic Continuum / Monogram (Crooz or Langone style).
 - **Ruler and compass:** Every curve is an arc from a single golden series, `R(n) = R0 / φⁿ`, and every position is a distance from that series; no measurement is set by eye. In the code, name the series step of each measurement.
 - **Audit the series:** Before showing a concept, run `node <skill-dir>/scripts/series-audit.ts concept.svg --r0 <R0>` (Node 24 or later; in Claude Code, `<skill-dir>` is `${CLAUDE_SKILL_DIR}`). Fix every circle it lists as OFF SERIES or NOT CIRCULAR: `node <skill-dir>/scripts/series-fit.ts concept.svg --r0 <R0>` gives, for each one, the series arc through the same end points and the `A` command that draws it. An AMBIGUOUS curve is too flat to measure, so name its step in the code. If Node is not available, say so instead of claiming the check passed.
-- **Look before showing:** Run `node <skill-dir>/scripts/render-png.ts concept.svg --out <dir>` and open `<dir>/concept-sheet.png` with your image-reading tool: the 256 and 48 px renders at real size and the 16 px render enlarged ×8. Check that the silhouette reads at 16 px, every detail shows at 48 px, the wink is visible at 256 px and nothing is cut by the frame. Fix what you see and render again; show a concept only after you have looked at its sheet. The command draws fills only; when it lists something it did not draw (a stroke, a mask, a gradient), outline it as a fill or check it in a browser.
+- **Look before showing:** Run `node <skill-dir>/scripts/render-png.ts concept.svg --out <dir>` and open `<dir>/concept-sheet.png` with your image-reading tool: the 256 and 48 px renders at real size and the 16 px render enlarged ×8. Check that the silhouette reads at 16 px, every detail shows at 48 px, the wink is visible at 256 px and nothing is cut by the frame. Fix what you see and render again. Render again after every change too: the sheet you look at must come from the exact file you show, never from an earlier build. The command draws fills only; when it lists something it did not draw (a stroke, a mask, a gradient), outline it as a fill or check it in a browser.
 - **Concept checkpoint: show the three, then stop.** Show the three sheets (attach the PNGs, or give their paths if you cannot share files) with this message, then wait for the client's answer:
 
   ```markdown
