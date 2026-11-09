@@ -3,7 +3,7 @@
 import { fitCircle, type CircleFit } from './circle-fit.ts';
 import { distance, type Point } from './geometry.ts';
 import { seriesSteps } from './golden-series.ts';
-import { coordinateRounding, extractPathData, parsePathData } from './svg-path.ts';
+import { coordinateRounding, extractPathData, hasTransforms, parsePathData, type CurveSegment, type Segment } from './svg-path.ts';
 
 export type AuditOptions = { r0: number; tolerance: number };
 
@@ -27,42 +27,51 @@ export type AuditReport = {
   transformsIgnored: boolean;
 };
 
-type MeasuredArc = CircleFit & { from: Point };
-type JudgedArc = MeasuredArc & { verdict: Verdict };
-type Candidate = { label: string; radius: number };
+export type MeasuredCurve = CircleFit & { segment: CurveSegment };
+export type JudgedCurve = MeasuredCurve & { verdict: Verdict };
+export type Candidate = { label: string; radius: number };
 type Series = { radii: Candidate[]; offsets: Candidate[] };
 type SeriesCircle = Candidate & { center: Point };
 
-const TRANSFORM_ATTRIBUTE = /\stransform\s*=/;
-
 export function auditSvg(svg: string, options: AuditOptions): AuditReport {
-  const pathData = extractPathData(svg);
-  const rounding = coordinateRounding(pathData.join(' '));
-  const arcs = pathData.flatMap((data) => measureArcs(data, rounding));
   return {
-    rows: groupIntoCircles(judgeArcs(arcs, options), options.tolerance),
-    coordinateRounding: rounding,
-    transformsIgnored: TRANSFORM_ATTRIBUTE.test(svg),
+    rows: groupIntoCircles(judgeCurves(svg, options), options.tolerance),
+    coordinateRounding: svgRounding(svg),
+    transformsIgnored: hasTransforms(svg),
   };
 }
 
-// Lines are ruler work: only curves are measured.
-function measureArcs(pathData: string, rounding: number): MeasuredArc[] {
-  return parsePathData(pathData).flatMap((segment) => {
-    if (segment.kind === 'line') return [];
-    const fit = fitCircle(segment, rounding);
-    return fit ? [{ ...fit, from: segment.from }] : [];
-  });
+export function isProblem(verdict: Verdict): boolean {
+  return verdict.kind === 'off-series' || verdict.kind === 'not-circular';
 }
 
-function judgeArcs(arcs: MeasuredArc[], options: AuditOptions): JudgedArc[] {
+export function judgeCurves(svg: string, options: AuditOptions): JudgedCurve[] {
+  const curves = measureCurves(svg);
   const series = seriesCandidates(options);
-  const seriesCircles = arcs.flatMap((arc) => asSeriesCircle(arc, series, options.tolerance));
-  return arcs.map((arc) => ({ ...arc, verdict: judgeArc(arc, series, seriesCircles, options.tolerance) }));
+  const seriesCircles = curves.flatMap((curve) => asSeriesCircle(curve, series, options.tolerance));
+  return curves.map((curve) => ({ ...curve, verdict: judgeArc(curve, series, seriesCircles, options.tolerance) }));
+}
+
+// Lines are ruler work: only curves are measured.
+export function measureCurves(svg: string): MeasuredCurve[] {
+  const rounding = svgRounding(svg);
+  return extractPathData(svg)
+    .flatMap((pathData) => parsePathData(pathData))
+    .flatMap((segment) => measureCurve(segment, rounding));
+}
+
+function svgRounding(svg: string): number {
+  return coordinateRounding(extractPathData(svg).join(' '));
+}
+
+function measureCurve(segment: Segment, rounding: number): MeasuredCurve[] {
+  if (segment.kind === 'line') return [];
+  const fit = fitCircle(segment, rounding);
+  return fit ? [{ ...fit, segment }] : [];
 }
 
 // Radii are steps R(n); an even outline offsets a radius by a step R(n) or a diameter D(n) = 2·R(n).
-function seriesCandidates({ r0, tolerance }: AuditOptions): Series {
+export function seriesCandidates({ r0, tolerance }: AuditOptions): Series {
   const steps = seriesSteps(r0, tolerance);
   const radii = steps.map(({ step, radius }) => ({ label: `R${step}`, radius }));
   const diameters = steps.map(({ step, radius }) => ({ label: `D${step}`, radius: 2 * radius }));
@@ -70,13 +79,13 @@ function seriesCandidates({ r0, tolerance }: AuditOptions): Series {
 }
 
 // A circle that lands on exactly one step can anchor the offsets drawn around its center.
-function asSeriesCircle(arc: MeasuredArc, series: Series, tolerance: number): SeriesCircle[] {
+function asSeriesCircle(arc: MeasuredCurve, series: Series, tolerance: number): SeriesCircle[] {
   if (!isCircular(arc, tolerance)) return [];
   const steps = within(series.radii, arc.radius, matchWindow(arc, tolerance));
   return steps.length === 1 ? [{ ...steps[0], center: arc.center }] : [];
 }
 
-function judgeArc(arc: MeasuredArc, series: Series, seriesCircles: SeriesCircle[], tolerance: number): Verdict {
+function judgeArc(arc: MeasuredCurve, series: Series, seriesCircles: SeriesCircle[], tolerance: number): Verdict {
   if (!isCircular(arc, tolerance)) return { kind: 'not-circular' };
 
   const steps = within(series.radii, arc.radius, matchWindow(arc, tolerance)).map(({ label }) => label);
@@ -94,7 +103,7 @@ function verdictFor(labels: string[], radius: number, series: Series): Verdict {
 
 // The face R0-R4 shares its center with the head R0; a radius off the series with no such
 // partner was set by eye.
-function concentricOffsets(arc: MeasuredArc, series: Series, seriesCircles: SeriesCircle[], tolerance: number): string[] {
+function concentricOffsets(arc: MeasuredCurve, series: Series, seriesCircles: SeriesCircle[], tolerance: number): string[] {
   const window = matchWindow(arc, tolerance);
   const labels = seriesCircles
     .filter((circle) => distance(circle.center, arc.center) <= window)
@@ -108,7 +117,7 @@ function offsetLabels(circle: SeriesCircle, radius: number, offsets: Candidate[]
   return within(offsets, Math.abs(offset), window).map(({ label }) => `${circle.label}${sign}${label}`);
 }
 
-function isCircular(arc: MeasuredArc, tolerance: number): boolean {
+function isCircular(arc: MeasuredCurve, tolerance: number): boolean {
   return arc.deviation <= matchWindow(arc, tolerance);
 }
 
@@ -127,20 +136,20 @@ function nearestCandidate(candidates: Candidate[], radius: number): Candidate {
   );
 }
 
-function groupIntoCircles(arcs: JudgedArc[], tolerance: number): CircleRow[] {
+function groupIntoCircles(arcs: JudgedCurve[], tolerance: number): CircleRow[] {
   const rows: CircleRow[] = [];
   for (const arc of arcs) {
     const row = rows.find((candidate) => isSameCircle(candidate, arc, tolerance));
     if (row) {
       row.segments += 1;
     } else {
-      rows.push({ verdict: arc.verdict, radius: arc.radius, center: arc.center, from: arc.from, segments: 1 });
+      rows.push({ verdict: arc.verdict, radius: arc.radius, center: arc.center, from: arc.segment.from, segments: 1 });
     }
   }
   return rows;
 }
 
-function isSameCircle(row: CircleRow, arc: JudgedArc, tolerance: number): boolean {
+function isSameCircle(row: CircleRow, arc: JudgedCurve, tolerance: number): boolean {
   const window = matchWindow(arc, tolerance);
   return (
     verdictName(row.verdict) === verdictName(arc.verdict) &&

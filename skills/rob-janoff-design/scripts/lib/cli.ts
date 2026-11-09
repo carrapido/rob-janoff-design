@@ -1,10 +1,15 @@
 // What the commands share: exit codes, argument errors and number formatting.
 import { parseArgs, type ParseArgsOptionsConfig } from 'node:util';
+import type { AuditOptions } from './audit.ts';
 import type { Point } from './geometry.ts';
 
 export const EXIT_PASS = 0;
 export const EXIT_PROBLEMS = 1;
 const EXIT_ERROR = 2;
+// 0.48 units on the cat's 240-unit head: wider than two-decimal rounding, far narrower than a radius set by eye.
+const DEFAULT_TOLERANCE_RATIO = 1 / 500;
+
+export const TRANSFORM_WARNING = 'warning: transform attributes are not applied, so radii inside scaled groups are wrong';
 
 export class UsageError extends Error {}
 
@@ -25,6 +30,16 @@ export function readCommandLine<Options extends ParseArgsOptionsConfig>(args: st
   } catch (error) {
     throw new UsageError(error instanceof Error ? error.message : String(error));
   }
+}
+
+// The golden series both commands measure against: --r0 and --tolerance, which defaults to R0 / 500.
+export function seriesOptions(r0Text: string | undefined, toleranceText: string | undefined): AuditOptions {
+  const r0 = Number(r0Text);
+  if (!isPositive(r0)) throw new UsageError('--r0 must be a positive number.');
+
+  const tolerance = toleranceText === undefined ? r0 * DEFAULT_TOLERANCE_RATIO : Number(toleranceText);
+  if (!isPositive(tolerance)) throw new UsageError('--tolerance must be a positive number.');
+  return { r0, tolerance };
 }
 
 export function isPositive(value: number): boolean {

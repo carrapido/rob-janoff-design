@@ -1,7 +1,7 @@
 // Turns "the on-screen size of a detail is measurement × px ÷ frame width" into numbers.
 // The rule: references/04-ruler-and-compass.md, section 4.
 import { flattenContour } from './contours.ts';
-import { cross, distance, dot, midpoint, subtract, type Point } from './geometry.ts';
+import { closestPointOnSegment, cross, distance, midpoint, subtract, type Point } from './geometry.ts';
 import { extractPathData, parseContours } from './svg-path.ts';
 
 export type Detail =
@@ -131,13 +131,4 @@ function sideOf(point: Point, from: Point, to: Point): number {
 function gapToSegment(point: Point, from: Point, to: Point): Gap {
   const closest = closestPointOnSegment(point, from, to);
   return { distance: distance(point, closest), at: midpoint(point, closest) };
-}
-
-function closestPointOnSegment(point: Point, from: Point, to: Point): Point {
-  const direction = subtract(to, from);
-  const lengthSquared = dot(direction, direction);
-  if (lengthSquared === 0) return from;
-
-  const along = Math.min(1, Math.max(0, dot(subtract(point, from), direction) / lengthSquared));
-  return { x: from.x + direction.x * along, y: from.y + direction.y * along };
 }

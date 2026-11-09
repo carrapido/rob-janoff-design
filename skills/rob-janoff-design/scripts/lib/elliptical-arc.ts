@@ -36,6 +36,13 @@ export function pointOnArc(arc: ArcParameters, angle: number): Point {
   return add(rotate(onAxes, arc.rotation), arc.center);
 }
 
+// The direction of travel at an angle: the derivative of pointOnArc, turned the way the arc sweeps.
+export function directionOnArc(arc: ArcParameters, angle: number): Point {
+  const onAxes = { x: -arc.radii.x * Math.sin(angle), y: arc.radii.y * Math.cos(angle) };
+  const direction = rotate(onAxes, arc.rotation);
+  return arc.sweepAngle < 0 ? { x: -direction.x, y: -direction.y } : direction;
+}
+
 // The spec draws a straight line for a zero radius and nothing for an arc that ends where it starts.
 // https://www.w3.org/TR/SVG2/paths.html#ArcOutOfRangeParameters
 function isDrawnAsLine(arc: ArcSegment): boolean {

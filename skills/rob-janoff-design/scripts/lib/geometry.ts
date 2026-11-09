@@ -23,3 +23,12 @@ export function dot(a: Point, b: Point): number {
 export function cross(a: Point, b: Point): number {
   return a.x * b.y - a.y * b.x;
 }
+
+export function closestPointOnSegment(point: Point, from: Point, to: Point): Point {
+  const direction = subtract(to, from);
+  const lengthSquared = dot(direction, direction);
+  if (lengthSquared === 0) return from;
+
+  const along = Math.min(1, Math.max(0, dot(subtract(point, from), direction) / lengthSquared));
+  return { x: from.x + direction.x * along, y: from.y + direction.y * along };
+}

@@ -30,7 +30,7 @@ Before designing, read the matching file with your file-reading tools:
 ### Phase 3: Pure SVG Execution and 3 Options
 - **"When in doubt, leave it out":** No literal, engraving-style illustrations (avoid the mistake of Ron Wayne's original Apple logo). Use only solid silhouettes (`fill`), geometric subtraction and negative space.
 - **Ruler and compass:** Every curve is an arc from a single golden series, `R(n) = R0 / φⁿ`, and every position is a distance from that series; no measurement is set by eye. In the code, name the series step of each measurement.
-- **Audit the series:** Before showing a concept, run `node <skill-dir>/scripts/series-audit.ts concept.svg --r0 <R0>` (Node 24 or later; in Claude Code, `<skill-dir>` is `${CLAUDE_SKILL_DIR}`). Fix every circle it lists as OFF SERIES or NOT CIRCULAR. An AMBIGUOUS curve is too flat to measure, so name its step in the code. If Node is not available, say so instead of claiming the check passed.
+- **Audit the series:** Before showing a concept, run `node <skill-dir>/scripts/series-audit.ts concept.svg --r0 <R0>` (Node 24 or later; in Claude Code, `<skill-dir>` is `${CLAUDE_SKILL_DIR}`). Fix every circle it lists as OFF SERIES or NOT CIRCULAR: `node <skill-dir>/scripts/series-fit.ts concept.svg --r0 <R0>` gives, for each one, the series arc through the same end points and the `A` command that draws it. An AMBIGUOUS curve is too flat to measure, so name its step in the code. If Node is not available, say so instead of claiming the check passed.
 - **Always present 3 conceptual options**, so the client owns the choice without being overwhelmed:
   - *Concept A:* Essential Silhouette + Human-Scale Cut.
   - *Concept B:* Negative-Space Wink (FedEx style).
@@ -43,5 +43,5 @@ Before designing, read the matching file with your file-reading tools:
 
 ### Phase 4: Client Iteration (from hand-drawn edit to golden fit)
 1. Deliver an editable copy in cubic Béziers so the client can adjust it by hand.
-2. When the client says so, compare their version against the last copy and fit each change with circles from the series, reporting the fit error.
+2. When the client says so, run `node <skill-dir>/scripts/series-fit.ts edited.svg --r0 <R0> --since last-copy.svg`. It finds what changed against the last copy and fits each change with an arc from the series through the same end points. Report the fit error (RMS and largest) and the tangent turn at each end. When it says NEEDS A DECISION, split the curve into two arcs or ask the client what the shape is.
 3. Apply the result to the golden component without overwriting the hand-drawn sheet, and if a shape represents something, ask what it is before turning it into something else.

@@ -38,7 +38,7 @@ Delete `<skills-directory>/rob-janoff-design/`.
 | --- | --- |
 | `skills/rob-janoff-design/SKILL.md` | The skill: workflow the agent follows. |
 | `skills/rob-janoff-design/references/` | Book chapters and the ruler-and-compass method, loaded on demand. |
-| `skills/rob-janoff-design/scripts/` | Node 24 commands: `series-audit.ts` checks every curve against the golden series; `scale-report.ts` gives the on-screen size of every detail. |
+| `skills/rob-janoff-design/scripts/` | Node 24 commands: `series-audit.ts` checks every curve against the golden series; `series-fit.ts` fits hand-drawn edits and off-series curves back onto it; `scale-report.ts` gives the on-screen size of every detail. |
 | `tests/` | Tests for the scripts. |
 | `.claude-plugin/marketplace.json` | Claude Code plugin marketplace. |
 

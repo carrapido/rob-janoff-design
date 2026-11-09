@@ -9,6 +9,11 @@ export function flattenContour(segments: Segment[], spacing: number): Point[] {
   return isClosed(points) ? points : [...points, points[0]];
 }
 
+// One segment as an open polyline, from its start point to its end point.
+export function flattenSegment(segment: Segment, spacing: number): Point[] {
+  return [segment.from, ...pointsAfterStart(segment, spacing)];
+}
+
 // Lines are exact; curves are sampled. Each list ends exactly at the segment's end point.
 function pointsAfterStart(segment: Segment, spacing: number): Point[] {
   if (segment.kind === 'line') return [segment.to];

@@ -22,6 +22,7 @@ type Command = { letter: string; args: number[] };
 type Pen = { at: Point; subpathStart: Point; previous: Segment | undefined };
 
 const PATH_DATA_ATTRIBUTE = /<path\b[^>]*?\sd\s*=\s*(["'])([\s\S]*?)\1/g;
+const TRANSFORM_ATTRIBUTE = /\stransform\s*=/;
 const DECIMAL_PLACES = /\.(\d+)/g;
 const ARGUMENT_COUNT: Record<string, number> = { M: 2, L: 2, H: 1, V: 1, C: 6, S: 4, Q: 4, T: 2, A: 7, Z: 0 };
 // In A, the large-arc and sweep flags are single characters that may touch the next number: "a10 10 0 0110 10".
@@ -30,6 +31,11 @@ const ORIGIN: Point = { x: 0, y: 0 };
 
 export function extractPathData(svg: string): string[] {
   return [...svg.matchAll(PATH_DATA_ATTRIBUTE)].map((match) => match[2]);
+}
+
+// The commands read path data as written; a transform would move and scale what they measure.
+export function hasTransforms(svg: string): boolean {
+  return TRANSFORM_ATTRIBUTE.test(svg);
 }
 
 export function parsePathData(pathData: string): Segment[] {

@@ -1,5 +1,5 @@
 // Measures the circle a curve segment draws, and how far the measurement can be trusted.
-import { controlPolygon, pointOnBezier, type BezierSegment } from './bezier.ts';
+import { controlPolygon, leavingDirection, pointOnBezier, type BezierSegment } from './bezier.ts';
 import { arcParameters } from './elliptical-arc.ts';
 import { cross, distance, subtract, type Point } from './geometry.ts';
 import type { ArcSegment, CurveSegment } from './svg-path.ts';
@@ -79,12 +79,6 @@ function endNormalsCrossing(polygon: Point[]): Point | undefined {
 
   const along = cross(subtract(end, start), endNormal) / denominator;
   return { x: start.x + startNormal.x * along, y: start.y + startNormal.y * along };
-}
-
-// The first control point that differs from the end gives the curve's direction there.
-function leavingDirection([end, ...rest]: Point[]): Point {
-  const next = rest.find((point) => distance(point, end) > 0) ?? end;
-  return subtract(next, end);
 }
 
 function perpendicular({ x, y }: Point): Point {
