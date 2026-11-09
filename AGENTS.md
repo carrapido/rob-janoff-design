@@ -40,6 +40,7 @@ Delete `<skills-directory>/rob-janoff-design/`.
 | `skills/rob-janoff-design/references/` | Book chapters and the ruler-and-compass method, loaded on demand. |
 | `skills/rob-janoff-design/scripts/` | Node 24 commands: `series-audit.ts` checks every curve against the golden series; `series-fit.ts` fits hand-drawn edits and off-series curves back onto it; `scale-report.ts` gives the on-screen size of every detail; `render-png.ts` renders the logo to PNG at 256, 48 and 16 px so the agent can look at it. |
 | `tests/` | Tests for the scripts. |
+| `evals/` | `claude plugin eval` cases, one per mode (design, critique, refresh). |
 | `.claude-plugin/marketplace.json` | Claude Code plugin marketplace. |
 
 ## Verification

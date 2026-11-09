@@ -163,6 +163,16 @@ Ask your agent in plain words. The skill picks one of three modes:
 | Critique | *"Critique our logo: logo.svg"* | A verdict with evidence (renders, on-screen sizes) against Janoff's golden rules, nothing redrawn |
 | Refresh | *"Refresh our logo, people already know it: logo.svg"* | Rebuild, refine and rethink-one-element options beside the original, like the cat above |
 
+## Evals
+
+`evals/` holds one case per mode (design, critique and refresh) for [`claude plugin eval`](https://code.claude.com/docs/en/plugin-evals.md). Each case runs with and without the skill, and graders score it: the commands the agent ran, the files it did or did not write, and an LLM judge for the message it ends with. The agent writes SVGs and runs Node, so the operator grants those tools:
+
+```bash
+claude plugin eval . --allow-tools Write Edit Bash "Bash(node *)" "Bash(mkdir *)"
+```
+
+Every run is a full agent session billed to your account; add `--runs 1` and `--max-cost-usd <usd>` to keep a check cheap. Results go to `evals/results/`, which git ignores.
+
 ## Repository layout
 
 ```
@@ -171,6 +181,7 @@ Ask your agent in plain words. The skill picks one of three modes:
 │   └── marketplace.json        # Claude Code plugin marketplace
 ├── AGENTS.md                   # Install steps the agent follows
 ├── assets/                     # README images: before/after, ruler-and-compass and sketch-to-concepts steps
+├── evals/                      # One claude plugin eval case per mode: design, critique, refresh
 ├── tests/                      # Tests for the skill's scripts: npm test
 └── skills/
     └── rob-janoff-design/
