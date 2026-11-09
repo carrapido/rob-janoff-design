@@ -70,6 +70,49 @@ Copy `skills/rob-janoff-design/` into your agent's skills directory:
 </tr>
 </table>
 
+## Ruler and compass, step by step
+
+Every curve of the *After* logo is an arc from one golden series, R(n) = 240 / φⁿ, and every distance is a step of it, D(n) = 2·R(n). Nothing is set by eye. The full method is in [`04-ruler-and-compass.md`](skills/rob-janoff-design/references/04-ruler-and-compass.md).
+
+`R−1 388.3 · R0 240 · R1 148.3 · R2 91.7 · R3 56.7 · R4 35 · R5 21.6 · R6 13.4 · R7 8.3`
+
+<table>
+<tr>
+<td width="33%" valign="top">
+<img src="./assets/ruler-and-compass/1-square.svg" alt="Step 1: the dashed head square and the golden-section eye line over the faded logo" width="100%">
+<br><strong>1 · Series and square</strong><br>
+The head's square is 2·R0 = 480. Its golden section sets the eye line.
+</td>
+<td width="33%" valign="top">
+<img src="./assets/ruler-and-compass/2-head.svg" alt="Step 2: the R0 head circle and the dashed face circle inside it" width="100%">
+<br><strong>2 · Head and face</strong><br>
+The head is R0 and the face R0 − R4. The hair falls behind and the face stands out against it.
+</td>
+<td width="33%" valign="top">
+<img src="./assets/ruler-and-compass/3-ears.svg" alt="Step 3: an R1 and an R−1 circle crossing at each ear tip, with the D5 lines above and below the square" width="100%">
+<br><strong>3 · Ears</strong><br>
+Each ear is the lens between an R1 circle and an R−1 circle. The tip sits D5 above the square.
+</td>
+</tr>
+<tr>
+<td width="33%" valign="top">
+<img src="./assets/ruler-and-compass/4-fringe.svg" alt="Step 4: six R1 circles along the fringe and four large R−1 circles along the locks" width="100%">
+<br><strong>4 · Fringe and locks</strong><br>
+Six R1 arcs draw the fringe. Four R−1 arcs, tangent to the head, draw the locks.
+</td>
+<td width="33%" valign="top">
+<img src="./assets/ruler-and-compass/5-features.svg" alt="Step 5: two crossing R3 circles for each eye and the fang's slope drawn as a 7" width="100%">
+<br><strong>5 · Eyes and mouth</strong><br>
+Each eye is where two R3 circles cross. The fang drops R3 and moves in R4: a φ slope that reads as a 7.
+</td>
+<td width="33%" valign="top">
+<img src="./assets/ruler-and-compass/6-hood.svg" alt="Step 6: R2 circles at the hood's lower corners, the head square and the D5 lines at top and bottom" width="100%">
+<br><strong>6 · Hood and frame</strong><br>
+R2 corners and a bottom D5 below the square, the same D5 as the ears, so the margins match top and bottom.
+</td>
+</tr>
+</table>
+
 ## Usage
 
 Ask your agent for a logo, for example: *"Design the logo for a specialty coffee shop in Oaxaca"*. The skill triggers on requests to create a logo, design a brand icon, vectorize a concept in SVG or evaluate a visual identity.
@@ -81,7 +124,7 @@ Ask your agent for a logo, for example: *"Design the logo for a specialty coffee
 ├── .claude-plugin/
 │   └── marketplace.json        # Claude Code plugin marketplace
 ├── AGENTS.md                   # Install steps the agent follows
-├── assets/                     # README before/after images
+├── assets/                     # README images: before/after and ruler-and-compass steps
 └── skills/
     └── rob-janoff-design/
         ├── SKILL.md            # Workflow the agent follows
