@@ -67,6 +67,11 @@ If the request fits more than one mode, ask which one before starting.
 1. **Overall Silhouette:** Reduce the concept to its most basic recognizable form, defining its top and bottom curves ("shoulders and feet").
 2. **The Cross-Section:** If the shape is too common or ambiguous (e.g., it looks like a cherry instead of an apple), make a conceptual cut to reveal its inner essence.
 3. **Scale Relation + "A Wink and a Smile":** Add an element of interaction or a visual wink (a bite, an arrow hidden in negative space, a satellite sphere or a continuous line of initials) that defines the scale and makes the viewer smile on discovering it ("Oh, I get it!").
+4. **Longlist before you draw:** one-line ideas are cheap and builds are expensive, so think wide before you build.
+   - Name the category's clichés first (a coffee shop: beans, cups, steam) and keep them off the list unless the idea gives them a fresh form: the message is "visualized metaphorically, perhaps subliminally, certainly not literally".
+   - Write 8 to 12 concepts, one sentence each, spread across the three types of phase 3, as a short table: type, the detail of the brief it pulls, the idea, the wink.
+   - Score each quickly: one sentence explains it, it has a wink, it is not a cliché, its silhouette should read in one ink at 16 px.
+   - Pick the three strongest that pull three different details, ideally one per type, and build only those. If two picks share their main subject (two mountains, two beans), swap one for a runner-up with another subject: three treatments of one subject are one idea, not three. Keep two runners-up for the checkpoint.
 
 ### Phase 3: Pure SVG Execution and 3 Options
 - **"When in doubt, leave it out":** No literal, engraving-style illustrations (avoid the mistake of Ron Wayne's original Apple logo). Use only solid silhouettes (`fill`), geometric subtraction and negative space.
@@ -87,6 +92,7 @@ If the request fits more than one mode, ask which one before starting.
   ### C · <name>: graphic continuum / monogram   (same shape)
 
   **My pick:** <one or two sentences on why>.
+  **Also considered:** <two runners-up from the longlist, one line each>.
   **Next:** choose one, or tell me what you like in each. Then I build its full preview: color tied to the USP, one-ink version, scale test and context test.
   ```
 
